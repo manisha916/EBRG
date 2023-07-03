@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -20,7 +22,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.A) || LeftClick()){
             if (isGrounded){
-                JumpPlayer(-jumpPower);
+                JumpPlayer(-jumpPower);         
                 canDoubleJump = true;
             }
             else if (canDoubleJump){
@@ -28,7 +30,7 @@ public class PlayerController : MonoBehaviour
                 canDoubleJump = false;
             }
             else if (!canDoubleJump && !isGrounded) rb.AddForce(Vector2.down * 8, ForceMode2D.Impulse);
-            transform.eulerAngles = new Vector2(0, 180);
+                
         }
         else if (Input.GetKeyDown(KeyCode.D) || RightClick()){
             if (isGrounded){
@@ -73,5 +75,18 @@ public class PlayerController : MonoBehaviour
         }
         return false;
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    { 
+
+        if (collision.gameObject.CompareTag("Obstacle"))
+        {
+            Destroy(gameObject);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+           
+         
+        }
+    }
+
+   
 }
 
