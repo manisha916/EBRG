@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,7 +13,7 @@ public class PlayerController : MonoBehaviour
 
    [SerializeField] bool isGrounded;
    [SerializeField] bool canDoubleJump;
-  
+
     void Start(){
         rb = GetComponent<Rigidbody2D>();
     }
@@ -29,24 +30,25 @@ public class PlayerController : MonoBehaviour
                 JumpPlayer(-jumpPower);
                 canDoubleJump = false;
             }
-            else if (!canDoubleJump && !isGrounded) rb.AddForce(Vector2.down * 8, ForceMode2D.Impulse);
-                
+             else if (!canDoubleJump && !isGrounded) rb.AddForce(Vector2.down * 8, ForceMode2D.Impulse);
+          
+            transform.eulerAngles = new Vector2(0, 180);
         }
         else if (Input.GetKeyDown(KeyCode.D) || RightClick()){
+            
             if (isGrounded){
                 JumpPlayer(jumpPower);  
                 canDoubleJump = true;
-
             }
             else if (canDoubleJump){
                 JumpPlayer(jumpPower);  
                 canDoubleJump = false;
-                
             }
-            else if (!canDoubleJump && !isGrounded) rb.AddForce(Vector2.down * 8, ForceMode2D.Impulse);
+             else if (!canDoubleJump && !isGrounded) rb.AddForce(Vector2.down * 8, ForceMode2D.Impulse);
+          
             transform.eulerAngles = new Vector2(0, 0);
         }
-       
+
         //if (!canDoubleJump && !isGrounded && (Input.GetKeyDown(KeyCode.A) || LeftClick() || Input.GetKeyDown(KeyCode.D) || RightClick()))
         //    rb.AddForce(Vector2.down * up, ForceMode2D.Impulse);
 
@@ -83,10 +85,7 @@ public class PlayerController : MonoBehaviour
             Destroy(gameObject);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
            
-         
         }
     }
-
-   
 }
 

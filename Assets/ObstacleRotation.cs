@@ -10,13 +10,7 @@ public class ObstacleRotation : MonoBehaviour
     public Transform pos1;
     public Transform pos2;
     bool turnback;
-   
-    void Start()
-    {
-        
-    }
 
-   
     void Update()
     {
         transform.Rotate(0, 0, rotateSpeed*Time.deltaTime);
