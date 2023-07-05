@@ -143,9 +143,6 @@ Library: lib_burst_generated
 --root-assembly=/Users/yudiz/Desktop/GitHub/GameJam/EBRG/Temp/StagingArea/Data/Managed/Unity.2D.Tilemap.Extras.dll
 --root-assembly=/Users/yudiz/Desktop/GitHub/GameJam/EBRG/Temp/StagingArea/Data/Managed/Assembly-CSharp.dll
 --root-assembly=/Users/yudiz/Desktop/GitHub/GameJam/EBRG/Temp/StagingArea/Data/Managed/Unity.InternalAPIEngineBridge.001.dll
---root-assembly=/Users/yudiz/Desktop/GitHub/GameJam/EBRG/Temp/StagingArea/Data/Managed/CFXRRuntime.dll
---root-assembly=/Users/yudiz/Desktop/GitHub/GameJam/EBRG/Temp/StagingArea/Data/Managed/CFXRDemo.dll
---root-assembly=/Users/yudiz/Desktop/GitHub/GameJam/EBRG/Temp/StagingArea/Data/Managed/KinoBloom.Runtime.dll
 --assembly-folder=/Users/yudiz/Desktop/GitHub/GameJam/EBRG/Temp/StagingArea/Data/Managed/
 --pdb-search-paths=Temp/ManagedSymbols/
 --method=Unity.Burst.BurstCompiler+BurstCompilerHelper, Unity.Burst, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::IsBurstEnabled()--8c2be93e18276203cbd918daa2748a10

@@ -1,5 +1,4 @@
 using UnityEngine;
-
 public class GroundSpawner : MonoBehaviour
 {
     public GameObject[] groundPrefabs;
@@ -7,32 +6,43 @@ public class GroundSpawner : MonoBehaviour
 
     private int currentPrefabIndex = 0; 
     private GameObject currentGround; 
+    private GameObject previousGround;
     public Transform PlayerTransform;
 
     private void Start()
     {
         SpawnGround(spawnPoints[0].position);
     }
-
     private void Update()
     {
-        if (NextSpawnPoint())
-        {  
-            currentPrefabIndex++;
-            if (currentPrefabIndex >= groundPrefabs.Length)
+        if (Next())
+        {
+            Delete(previousGround);
+            previousGround = currentGround;
+            if (currentPrefabIndex == 4)
             {
-                currentPrefabIndex = 0;
+                Debug.Log("GameOver");
             }
+            else
+            {
+                currentPrefabIndex++;
+             }
             SpawnGround(spawnPoints[currentPrefabIndex].position);
         }
     }
-
     private void SpawnGround(Vector3 spawnPosition)
     {
-        currentGround = Instantiate(groundPrefabs[currentPrefabIndex], spawnPosition, Quaternion.identity);
+     
+            GameObject randomGroundPrefav = groundPrefabs[Random.Range(0,9)];
+            currentGround = Instantiate(randomGroundPrefav, spawnPosition, Quaternion.identity);
+      
+       
     }
-
-    private bool NextSpawnPoint()
+    private void Delete(GameObject ground)
+    {
+        Destroy(ground);
+    }
+    private bool Next()
     {
         return PlayerTransform.position.x >= spawnPoints[currentPrefabIndex].position.x;
     }
