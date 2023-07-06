@@ -7,11 +7,13 @@ public class GameOver : MonoBehaviour
     public float fall = -20f;
 
     private bool isGameOver = false;
+
+    public Canvas popup;
     void Update()
     {
         if (!isGameOver && player.transform.position.y < fall)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            popup.enabled = true;
         }
     }
 }
