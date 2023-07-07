@@ -73,18 +73,22 @@ public class GroundSpawner : MonoBehaviour
     public void StartGame()
     {
         Debug.Log("gameStart");
+        playerController.playerTrailRenderer.enabled = false;
         currentPrefabIndex = 0;
         SpawnGround(spawnPoints[0].position);
         playerController.ResetPlayer();
         cameraMovement.ResetCamera();
+       
 
     }
     public void StartGame1()
     {
         Debug.Log("gameStart1");
+        playerController.playerTrailRenderer.enabled = false;
         currentPrefabIndex = 0;
         playerController.ResetPlayer();
         cameraMovement.ResetCamera();
+     
 
     }
 }

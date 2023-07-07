@@ -14,6 +14,9 @@ public class PlayerController : MonoBehaviour
    [SerializeField] bool isGrounded;
    [SerializeField] bool canDoubleJump;
     Vector3 playerPos;
+
+    public TrailRenderer playerTrailRenderer;
+
     void Start(){
         rb = GetComponent<Rigidbody2D>();
         playerPos = transform.position;
@@ -94,6 +97,7 @@ public class PlayerController : MonoBehaviour
         transform.position = playerPos;
         gameObject.SetActive(true);
         rb.velocity = Vector3.zero;
+        playerTrailRenderer.enabled = false;
     }
 }
 
