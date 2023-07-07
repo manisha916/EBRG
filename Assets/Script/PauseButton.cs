@@ -36,7 +36,7 @@ public class PauseButton : MonoBehaviour
 
     public void OnHomeClicked()
     {
-        Debug.Log("pausedisable");
+    
         ScreenManager.instance.SwitchScreen(ScreenType.Home);
         pauseCanvas.enabled = false;
         Time.timeScale = 1f;
@@ -70,7 +70,7 @@ public class PauseButton : MonoBehaviour
     {
         homeCanvas.enabled = false;
         GroundSpawner.instance.StartGame();
-        Debug.Log("homeDisable");
+       
     }
 
 }
