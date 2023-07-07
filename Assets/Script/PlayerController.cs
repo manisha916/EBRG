@@ -13,9 +13,10 @@ public class PlayerController : MonoBehaviour
 
    [SerializeField] bool isGrounded;
    [SerializeField] bool canDoubleJump;
-
+    Vector3 playerPos;
     void Start(){
         rb = GetComponent<Rigidbody2D>();
+        playerPos = transform.position;
     }
 
     void Update(){
@@ -82,10 +83,17 @@ public class PlayerController : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Obstacle"))
         {
-            Destroy(gameObject);
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-           
+            gameObject.SetActive(false);
+            Time.timeScale = 0f;
+            ScreenManager.instance.SwitchScreen(ScreenType.gameOver);
+
         }
+    }
+    public void ResetPlayer()
+    {
+        transform.position = playerPos;
+        gameObject.SetActive(true);
+        rb.velocity = Vector3.zero;
     }
 }
 

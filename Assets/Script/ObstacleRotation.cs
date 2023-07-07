@@ -36,8 +36,9 @@ public class ObstacleRotation : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            Destroy(collision.gameObject);
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            collision.gameObject.SetActive(false);
+            Time.timeScale = 0f;
+            ScreenManager.instance.SwitchScreen(ScreenType.gameOver);
         }
     }
 }

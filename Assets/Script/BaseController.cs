@@ -1,35 +1,26 @@
-using System.Collections;
+
 using UnityEngine;
 
 public class BaseController : MonoBehaviour
 {
-    public float eI = 1f; 
-    public float dI = 1f; 
-    public GameObject groundObject;    
+    private bool isPlayerOnGround = false;
 
-    private bool isGroundEnabled = true;
-
-    private void Start()
+   
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        StartCoroutine(Ground());
-    }
-
-    private IEnumerator Ground()
-    {
-        while (true)
+        if (collision.gameObject.CompareTag("Player"))
         {
-            if (isGroundEnabled)
-            {
-                groundObject.SetActive(false);
-                yield return new WaitForSeconds(dI);
-                isGroundEnabled = false;
-            }
-            else
-            {
-                groundObject.SetActive(true);
-                yield return new WaitForSeconds(eI);
-                isGroundEnabled = true;
-            }
+            isPlayerOnGround = true;
+            Debug.Log("enter");
         }
     }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            isPlayerOnGround = false;
+            gameObject.SetActive(false); 
+        }
+    }
+    
 }

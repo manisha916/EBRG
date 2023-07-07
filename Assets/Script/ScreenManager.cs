@@ -31,7 +31,7 @@ public class ScreenManager : MonoBehaviour
 }
 public enum ScreenType
 {
-  Home,Pause,GameOverPanel
+  Home,Pause,gameOver
 }
 [System.Serializable]
 public class BaseScreen

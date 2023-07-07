@@ -8,12 +8,14 @@ public class GameOver : MonoBehaviour
 
     private bool isGameOver = false;
 
-    public Canvas popup;
+   
     void Update()
     {
         if (!isGameOver && player.transform.position.y < fall)
         {
-            popup.enabled = true;
+            Debug.Log("GAMEOVER");
+            ScreenManager.instance.SwitchScreen(ScreenType.gameOver);
+            Time.timeScale = 0f;
         }
     }
 }

@@ -9,23 +9,23 @@ public class GroundSpawner : MonoBehaviour
     private GameObject currentGround; 
     private GameObject previousGround;
     public Transform PlayerTransform;
+    public Transform cameraTransform;
 
     public GameObject parent;
 
-   
-    public Vector3 playerStartPos;
-    public Vector3 prefabPos;
-    public Vector3 camPos;
-
-
+    private PlayerController playerController;
+    private CameraMovement cameraMovement;
     private void Awake()
     {
         instance = this;
     }
     private void Start()
     {
-        SpawnGround(spawnPoints[0].position);
-    
+        parent = new GameObject("GroundParent");
+        // SpawnGround(spawnPoints[0].position);
+        playerController = PlayerTransform.GetComponent<PlayerController>();
+        cameraMovement = cameraTransform.GetComponent<CameraMovement>();
+
     }
     private void Update()
     {
@@ -49,7 +49,7 @@ public class GroundSpawner : MonoBehaviour
     private void SpawnGround(Vector3 spawnPosition)
     {
      
-            GameObject randomGroundPrefav = groundPrefabs[Random.Range(0,3)];
+            GameObject randomGroundPrefav = groundPrefabs[Random.Range(0,6)];
             currentGround = Instantiate(randomGroundPrefav, spawnPosition, Quaternion.identity);
             currentGround.transform.SetParent(parent.transform);
       
@@ -70,9 +70,21 @@ public class GroundSpawner : MonoBehaviour
             Destroy(child.gameObject);
         }
     }
-    public void GameStart()
+    public void StartGame()
     {
+        Debug.Log("gameStart");
+        currentPrefabIndex = 0;
         SpawnGround(spawnPoints[0].position);
+        playerController.ResetPlayer();
+        cameraMovement.ResetCamera();
+
+    }
+    public void StartGame1()
+    {
+        Debug.Log("gameStart1");
+        currentPrefabIndex = 0;
+        playerController.ResetPlayer();
+        cameraMovement.ResetCamera();
 
     }
 }

@@ -7,6 +7,12 @@ public class CameraMovement : MonoBehaviour
     public Vector3 offset = new Vector3(0, 2, -10);
     public float smoothTime = 0.25f;
     Vector3 currentVelocity;
+
+     Vector3 camPos;
+    public void Start()
+    {
+        camPos = transform.position;
+    }
     private void LateUpdate()
     {
         transform.position = Vector3.SmoothDamp(
@@ -15,5 +21,9 @@ public class CameraMovement : MonoBehaviour
             ref currentVelocity,
             smoothTime
             );
+    }
+    public void ResetCamera()
+    {
+        transform.position = camPos;
     }
 }
