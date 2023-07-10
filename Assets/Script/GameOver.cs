@@ -16,11 +16,11 @@ public class GameOver : MonoBehaviour
     {
         if (!isGameOver && player.transform.position.y < fall)
         {
-           
+         
             ScreenManager.instance.SwitchScreen(ScreenType.gameOver);
             Time.timeScale = 0f;
             score.GameOver();
-            SoundManager.inst.PlaySound(SoundName.s2);
+         
         }
 
     }
