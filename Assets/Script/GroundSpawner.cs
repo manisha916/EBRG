@@ -49,7 +49,7 @@ public class GroundSpawner : MonoBehaviour
     private void SpawnGround(Vector3 spawnPosition)
     {
      
-            GameObject randomGroundPrefav = groundPrefabs[Random.Range(0,6)];
+            GameObject randomGroundPrefav = groundPrefabs[Random.Range(0,4)];
             currentGround = Instantiate(randomGroundPrefav, spawnPosition, Quaternion.identity);
             currentGround.transform.SetParent(parent.transform);
       

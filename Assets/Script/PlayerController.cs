@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     void Start(){
         rb = GetComponent<Rigidbody2D>();
         playerPos = transform.position;
+        Time.timeScale = 0f;
     }
 
     void Update(){
@@ -53,9 +54,6 @@ public class PlayerController : MonoBehaviour
             transform.eulerAngles = new Vector2(0, 0);
         }
 
-        //if (!canDoubleJump && !isGrounded && (Input.GetKeyDown(KeyCode.A) || LeftClick() || Input.GetKeyDown(KeyCode.D) || RightClick()))
-        //    rb.AddForce(Vector2.down * up, ForceMode2D.Impulse);
-
 
     }
     
@@ -81,17 +79,7 @@ public class PlayerController : MonoBehaviour
         }
         return false;
     }
-    private void OnCollisionEnter2D(Collision2D collision)
-    { 
-
-        if (collision.gameObject.CompareTag("Obstacle"))
-        {
-            gameObject.SetActive(false);
-            Time.timeScale = 0f;
-            ScreenManager.instance.SwitchScreen(ScreenType.gameOver);
-
-        }
-    }
+   
     public void ResetPlayer()
     {
         transform.position = playerPos;

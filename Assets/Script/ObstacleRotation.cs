@@ -10,7 +10,11 @@ public class ObstacleRotation : MonoBehaviour
     public Transform pos1;
     public Transform pos2;
     bool turnback;
-
+    public Score score;
+    public void Start()
+    {
+        score = GameObject.FindObjectOfType<Score>();
+    }
     void Update()
     {
         transform.Rotate(0, 0, rotateSpeed*Time.deltaTime);
@@ -36,9 +40,11 @@ public class ObstacleRotation : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            SoundManager.inst.PlaySound(SoundName.gameOver);
             collision.gameObject.SetActive(false);
             Time.timeScale = 0f;
             ScreenManager.instance.SwitchScreen(ScreenType.gameOver);
+            score.GameOver();
         }
     }
 }
