@@ -22,7 +22,6 @@ public class GroundSpawner : MonoBehaviour
     private void Start()
     {
         parent = new GameObject("GroundParent");
-        // SpawnGround(spawnPoints[0].position);
         playerController = PlayerTransform.GetComponent<PlayerController>();
         cameraMovement = cameraTransform.GetComponent<CameraMovement>();
 
@@ -49,7 +48,7 @@ public class GroundSpawner : MonoBehaviour
     private void SpawnGround(Vector3 spawnPosition)
     {
      
-            GameObject randomGroundPrefav = groundPrefabs[Random.Range(0,4)];
+            GameObject randomGroundPrefav = groundPrefabs[Random.Range(0,groundPrefabs.Length-1)];
             currentGround = Instantiate(randomGroundPrefav, spawnPosition, Quaternion.identity);
             currentGround.transform.SetParent(parent.transform);
       

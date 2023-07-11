@@ -24,6 +24,15 @@ public class SoundManager : MonoBehaviour
             }
         }
     }
+    public void SetVolume(float volume)
+    {
+        audioSource.volume = volume;
+    }
+    public void SetVolume1(float volume)
+    {
+        bg.volume = volume;
+    }
+
 }
 
 [System.Serializable]
@@ -34,5 +43,5 @@ public class Sound
 }
 public enum SoundName
 {
-    click, s1, s2, s3,gameOver
+    click, s1, s2, s3,gameOver,playerJump
 }

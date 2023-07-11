@@ -30,13 +30,20 @@ public class PlayerController : MonoBehaviour
             if (isGrounded){
                 JumpPlayer(-jumpPower);         
                 canDoubleJump = true;
+                SoundManager.inst.PlaySound(SoundName.playerJump);
             }
             else if (canDoubleJump){
                 JumpPlayer(-jumpPower);
                 canDoubleJump = false;
+                SoundManager.inst.PlaySound(SoundName.playerJump);
             }
-             else if (!canDoubleJump && !isGrounded) rb.AddForce(Vector2.down * 8, ForceMode2D.Impulse);
-          
+            else if (!canDoubleJump && !isGrounded)
+            {
+                float horizontalInput = Input.GetAxis("Horizontal");
+                rb.velocity = new Vector2(horizontalInput * 15, rb.velocity.x);
+            }
+            //else if (!canDoubleJump && !isGrounded) rb.AddForce(Vector2.left * 82, ForceMode2D.Impulse);
+
             transform.eulerAngles = new Vector2(0, 180);
         }
         else if (Input.GetKeyDown(KeyCode.D) || RightClick()){
@@ -44,16 +51,24 @@ public class PlayerController : MonoBehaviour
             if (isGrounded){
                 JumpPlayer(jumpPower);  
                 canDoubleJump = true;
+                SoundManager.inst.PlaySound(SoundName.playerJump);
             }
             else if (canDoubleJump){
                 JumpPlayer(jumpPower);  
                 canDoubleJump = false;
+                SoundManager.inst.PlaySound(SoundName.playerJump);
             }
-             else if (!canDoubleJump && !isGrounded) rb.AddForce(Vector2.down * 8, ForceMode2D.Impulse);
-          
+            else if (!canDoubleJump && !isGrounded)
+            {
+                float horizontalInput = Input.GetAxis("Horizontal");
+                rb.velocity = new Vector2(horizontalInput * 15, rb.velocity.x);
+
+            }
+           // else if (!canDoubleJump && !isGrounded) rb.AddForce(Vector2.right * 8, ForceMode2D.Impulse);
+
             transform.eulerAngles = new Vector2(0, 0);
         }
-
+     
 
     }
     

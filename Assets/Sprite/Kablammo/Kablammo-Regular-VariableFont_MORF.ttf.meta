@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 6d822029558e9467596c7d72cc114d76
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Kablammo
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 774237c1dd1f744808770b79302b6dee, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
