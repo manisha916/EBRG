@@ -13,9 +13,11 @@ public class PlayerController : MonoBehaviour
 
    [SerializeField] bool isGrounded;
    [SerializeField] bool canDoubleJump;
+   // bool lastJumpDirection;
     Vector3 playerPos;
 
     public TrailRenderer playerTrailRenderer;
+    private JumpDirection lastJumpDirection;
 
     void Start(){
         rb = GetComponent<Rigidbody2D>();
@@ -35,14 +37,18 @@ public class PlayerController : MonoBehaviour
             else if (canDoubleJump){
                 JumpPlayer(-jumpPower);
                 canDoubleJump = false;
+                lastJumpDirection = JumpDirection.Left;
                 SoundManager.inst.PlaySound(SoundName.playerJump);
             }
-            else if (!canDoubleJump && !isGrounded)
+
+           //  else if (!canDoubleJump && !isGrounded) rb.AddForce(Vector2.down * 8, ForceMode2D.Impulse);
+            else if (!canDoubleJump && !isGrounded && lastJumpDirection == JumpDirection.Right)
             {
-                float horizontalInput = Input.GetAxis("Horizontal");
-                rb.velocity = new Vector2(horizontalInput * 15, rb.velocity.x);
+                //float horizontalInput = Input.GetAxis("Horizontal");
+            //    rb.velocity = new Vector2(horizontalInput * 15, rb.velocity.x);
+                rb.AddForce(Vector2.left * 8, ForceMode2D.Impulse);
             }
-            //else if (!canDoubleJump && !isGrounded) rb.AddForce(Vector2.left * 82, ForceMode2D.Impulse);
+
 
             transform.eulerAngles = new Vector2(0, 180);
         }
@@ -56,15 +62,19 @@ public class PlayerController : MonoBehaviour
             else if (canDoubleJump){
                 JumpPlayer(jumpPower);  
                 canDoubleJump = false;
+                lastJumpDirection = JumpDirection.Right;
                 SoundManager.inst.PlaySound(SoundName.playerJump);
             }
-            else if (!canDoubleJump && !isGrounded)
+
+            //else if (!canDoubleJump && !isGrounded) rb.AddForce(Vector2.down * 8, ForceMode2D.Impulse);
+            else if (!canDoubleJump && !isGrounded&& lastJumpDirection == JumpDirection.Left)
             {
-                float horizontalInput = Input.GetAxis("Horizontal");
-                rb.velocity = new Vector2(horizontalInput * 15, rb.velocity.x);
+                //float horizontalInput = Input.GetAxis("Horizontal");
+              //  rb.velocity = new Vector2(horizontalInput * 15, -rb.velocity.x);
+               rb.AddForce(Vector2.right * 8, ForceMode2D.Impulse);
 
             }
-           // else if (!canDoubleJump && !isGrounded) rb.AddForce(Vector2.right * 8, ForceMode2D.Impulse);
+
 
             transform.eulerAngles = new Vector2(0, 0);
         }
@@ -103,4 +113,9 @@ public class PlayerController : MonoBehaviour
         playerTrailRenderer.enabled = false;
     }
 }
+enum JumpDirection
+{
+    Left,Right
+}
 
+// else if (!canDoubleJump && !isGrounded) rb.AddForce(Vector2.right * 8, ForceMode2D.Impulse);
