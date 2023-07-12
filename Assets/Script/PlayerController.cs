@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
 
    [SerializeField] bool isGrounded;
    [SerializeField] bool canDoubleJump;
-   // bool lastJumpDirection;
+  
     Vector3 playerPos;
 
     public TrailRenderer playerTrailRenderer;
@@ -28,27 +28,31 @@ public class PlayerController : MonoBehaviour
     void Update(){
         isGrounded = Physics2D.Raycast(transform.position, Vector2.down, groundCheckDistance, groundLayer);
 
-        if (Input.GetKeyDown(KeyCode.A) || LeftClick()){
-            if (isGrounded){
-                JumpPlayer(-jumpPower);         
+        if (Input.GetKeyDown(KeyCode.A) || LeftClick())
+        {
+            if (isGrounded)
+            {
+                JumpPlayer(-jumpPower);
                 canDoubleJump = true;
                 SoundManager.inst.PlaySound(SoundName.playerJump);
             }
-            else if (canDoubleJump){
+            else if (canDoubleJump)
+            {
                 JumpPlayer(-jumpPower);
                 canDoubleJump = false;
                 lastJumpDirection = JumpDirection.Left;
                 SoundManager.inst.PlaySound(SoundName.playerJump);
             }
 
-           //  else if (!canDoubleJump && !isGrounded) rb.AddForce(Vector2.down * 8, ForceMode2D.Impulse);
+            //  else if (!canDoubleJump && !isGrounded) rb.AddForce(Vector2.down * 8, ForceMode2D.Impulse);
             else if (!canDoubleJump && !isGrounded && lastJumpDirection == JumpDirection.Right)
             {
-                //float horizontalInput = Input.GetAxis("Horizontal");
-            //    rb.velocity = new Vector2(horizontalInput * 15, rb.velocity.x);
+                float horizontalInput = Input.GetAxis("Horizontal");
+                rb.velocity = new Vector2(horizontalInput * 15, rb.velocity.x);
                 rb.AddForce(Vector2.left * 8, ForceMode2D.Impulse);
-            }
+                lastJumpDirection = JumpDirection.Right;
 
+            }
 
             transform.eulerAngles = new Vector2(0, 180);
         }
@@ -69,9 +73,9 @@ public class PlayerController : MonoBehaviour
             //else if (!canDoubleJump && !isGrounded) rb.AddForce(Vector2.down * 8, ForceMode2D.Impulse);
             else if (!canDoubleJump && !isGrounded&& lastJumpDirection == JumpDirection.Left)
             {
-                //float horizontalInput = Input.GetAxis("Horizontal");
-              //  rb.velocity = new Vector2(horizontalInput * 15, -rb.velocity.x);
-               rb.AddForce(Vector2.right * 8, ForceMode2D.Impulse);
+                float horizontalInput = Input.GetAxis("Horizontal");
+                rb.velocity = new Vector2(horizontalInput * 15, -rb.velocity.x);
+                rb.AddForce(Vector2.right * 8, ForceMode2D.Impulse);
 
             }
 
@@ -96,6 +100,7 @@ public class PlayerController : MonoBehaviour
         }
         return false;
     }
+
 
     bool RightClick(){
         if (Input.touchCount > 0){

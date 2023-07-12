@@ -14,12 +14,14 @@ public class BaseController : MonoBehaviour
             Debug.Log("enter");
         }
     }
-    private void OnCollisionExit2D(Collision2D collision)
+    private async void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
             isPlayerOnGround = false;
             gameObject.SetActive(false);
+            await System.Threading.Tasks.Task.Delay(2000);
+            gameObject.SetActive(true);
             Debug.Log("exit");
         }
     }
@@ -27,7 +29,7 @@ public class BaseController : MonoBehaviour
 }
 
 
-
+//i need a canvas which show count down 3 2 1 when play button click after completing count down canvas off
 //using UnityEngine;
 //using TMPro;
 //using System.IO;

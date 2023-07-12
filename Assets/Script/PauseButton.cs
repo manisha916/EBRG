@@ -1,6 +1,8 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PauseButton : MonoBehaviour
 {
@@ -10,30 +12,37 @@ public class PauseButton : MonoBehaviour
     public Canvas shopCanvas;
     public Canvas settingCanvas;
 
-    private bool isPaused = false;
     public Score score;
+
+    public float startDelay = 5f;
+    public CountDownCanvas countdownCanvas;
+
+
+
     public void Start()
     {
         score = GameObject.FindObjectOfType<Score>();
     }
 
+
     public void OnPauseButtonClicked()
     {
         Time.timeScale = 0f;
         pauseCanvas.enabled = true;
-        isPaused = true;
         SoundManager.inst.PlaySound(SoundName.click);
     }
-    public void OnPlayButtonClicked()
+
+    public async void OnPlayButtonClicked()
     {
-        if (isPaused)
-        {
-            Time.timeScale = 1f;
-            pauseCanvas.enabled = false;
-            isPaused = false;
-            SoundManager.inst.PlaySound(SoundName.s2);
-        }
+       
+        pauseCanvas.enabled = false;
+        SoundManager.inst.PlaySound(SoundName.s2);
+        countdownCanvas.StartCountdown();
+        await System.Threading.Tasks.Task.Delay(2000);
+        Time.timeScale = 1f;
     }
+  
+
     public void OnRestartClicked()
     {
         pauseCanvas.enabled = false;
@@ -129,3 +138,16 @@ public class PauseButton : MonoBehaviour
     }
 
 }
+
+//public void OnPlayButtonClicked()
+//{
+//    if (isPaused)
+//    {
+//        Time.timeScale = 1f;
+//        pauseCanvas.enabled = false;
+//        isPaused = false;
+//        SoundManager.inst.PlaySound(SoundName.s2);
+//    }
+//}
+
+//GetComponent<Button>().onClick.AddListener(StartCountdown);
