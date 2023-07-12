@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
     void Start(){
         rb = GetComponent<Rigidbody2D>();
         playerPos = transform.position;
-        Time.timeScale = 0f;
+       // Time.timeScale = 0f;
     }
 
     void Update(){
