@@ -9,12 +9,11 @@ public class CountDownCanvas : MonoBehaviour
 
     public async void StartCountdown()
     {
-        Debug.Log("GH");
         countdownText.enabled = true;
 
         countdownText.text = "3";
         await System.Threading.Tasks.Task.Delay(666);
-        Debug.Log("GH");
+      
         countdownText.text = "2";
         await System.Threading.Tasks.Task.Delay(666);
 

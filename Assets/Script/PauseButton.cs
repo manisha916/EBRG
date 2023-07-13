@@ -129,25 +129,5 @@ public class PauseButton : MonoBehaviour
         SoundManager.inst.PlaySound(SoundName.click);
 
     }
-    public void OnBtnClick()
-    { 
-        ScreenManager.instance.SwitchScreen(ScreenType.Home);
-        shopCanvas.enabled = false;
-        SoundManager.inst.PlaySound(SoundName.s2);
-
-    }
-
 }
 
-//public void OnPlayButtonClicked()
-//{
-//    if (isPaused)
-//    {
-//        Time.timeScale = 1f;
-//        pauseCanvas.enabled = false;
-//        isPaused = false;
-//        SoundManager.inst.PlaySound(SoundName.s2);
-//    }
-//}
-
-//GetComponent<Button>().onClick.AddListener(StartCountdown);

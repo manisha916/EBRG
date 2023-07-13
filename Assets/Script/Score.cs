@@ -16,7 +16,7 @@ public class Score : MonoBehaviour
 
     private void Awake()
     {
-        scoreFilePath = Application.persistentDataPath + "/score1.json";
+        scoreFilePath = Application.persistentDataPath + "/Score.json";
         Debug.Log(scoreFilePath);
     }
 
@@ -73,7 +73,6 @@ public class Score : MonoBehaviour
         {
             string jsonData = File.ReadAllText(scoreFilePath);
             ScoreData scoreData = JsonUtility.FromJson<ScoreData>(jsonData);
-         //   ScoreNum = scoreData.ScoreNum;
             HighScoreNum = scoreData.HighScoreNum;
         }
     }

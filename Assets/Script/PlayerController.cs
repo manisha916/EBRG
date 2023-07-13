@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
     void Start(){
         rb = GetComponent<Rigidbody2D>();
         playerPos = transform.position;
-       // Time.timeScale = 0f;
+        Time.timeScale = 0f;
     }
 
     void Update(){
@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
                 SoundManager.inst.PlaySound(SoundName.playerJump);
             }
 
-            //  else if (!canDoubleJump && !isGrounded) rb.AddForce(Vector2.down * 8, ForceMode2D.Impulse);
+           
             else if (!canDoubleJump && !isGrounded && lastJumpDirection == JumpDirection.Right)
             {
                 float horizontalInput = Input.GetAxis("Horizontal");
@@ -70,7 +70,7 @@ public class PlayerController : MonoBehaviour
                 SoundManager.inst.PlaySound(SoundName.playerJump);
             }
 
-            //else if (!canDoubleJump && !isGrounded) rb.AddForce(Vector2.down * 8, ForceMode2D.Impulse);
+         
             else if (!canDoubleJump && !isGrounded&& lastJumpDirection == JumpDirection.Left)
             {
                 float horizontalInput = Input.GetAxis("Horizontal");
@@ -123,4 +123,3 @@ enum JumpDirection
     Left,Right
 }
 
-// else if (!canDoubleJump && !isGrounded) rb.AddForce(Vector2.right * 8, ForceMode2D.Impulse);

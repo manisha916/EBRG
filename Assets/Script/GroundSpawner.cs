@@ -32,14 +32,7 @@ public class GroundSpawner : MonoBehaviour
         {
             Delete(previousGround);
             previousGround = currentGround;
-            if (currentPrefabIndex == 10)
-            {
-                Debug.Log("GameOver");
-            }
-            else
-            {
-                currentPrefabIndex++;
-             }
+            currentPrefabIndex++;
             SpawnGround(spawnPoints[currentPrefabIndex].position);
         }
     }
@@ -48,7 +41,7 @@ public class GroundSpawner : MonoBehaviour
     private void SpawnGround(Vector3 spawnPosition)
     {
      
-            GameObject randomGroundPrefav = groundPrefabs[Random.Range(0,4)];
+            GameObject randomGroundPrefav = groundPrefabs[Random.Range(0,groundPrefabs.Length-1)];
             currentGround = Instantiate(randomGroundPrefav, spawnPosition, Quaternion.identity);
             currentGround.transform.SetParent(parent.transform);
 
