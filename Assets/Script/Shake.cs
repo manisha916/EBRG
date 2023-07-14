@@ -8,7 +8,7 @@ public class Shake : MonoBehaviour
    
     void Start()
     {
-        this.gameObject.transform.DOShakePosition(3, 50, 50, 100, true, true).SetLoops(-1, LoopType.Restart);
+        this.gameObject.transform.DOShakePosition(3, 1, 1, 1, true, true).SetLoops(-1, LoopType.Restart);
     }
 
 }

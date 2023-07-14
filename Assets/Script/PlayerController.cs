@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
                 float horizontalInput = Input.GetAxis("Horizontal");
                 rb.velocity = new Vector2(horizontalInput * 15, rb.velocity.x);
                 rb.AddForce(Vector2.left * 8, ForceMode2D.Impulse);
-                lastJumpDirection = JumpDirection.Right;
+               // lastJumpDirection = JumpDirection.Right;
 
             }
 
@@ -79,11 +79,8 @@ public class PlayerController : MonoBehaviour
 
             }
 
-
             transform.eulerAngles = new Vector2(0, 0);
         }
-     
-
     }
     
 
