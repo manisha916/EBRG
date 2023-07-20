@@ -154,7 +154,7 @@ public class GroundSpawner : MonoBehaviour
     private bool Next()
     {
         return PlayerTransform.position.x >= lastSpawn - gap * 0.1f;
-       // return PlayerTransform.position.x >= spawnPoints[currentPrefabIndex].position.x;
+       
     }
 
     public void DestroyChildPrefav()
